@@ -1,11 +1,20 @@
-import Example from "./Example";
+import { useState } from "react";
+import Example3 from "./Example3";
 
-function Example2() {
-  return (  
+export default function Example2(){
+  const [number, setNumber] = useState(0);
+
+  function onIncrement(){
+    setNumber(number + 1);
+  }
+  function onDecrement(){
+    setNumber(number - 1 );
+  }
+
+  return (
     <div className="Example2">
-      <Example/>
+      <button onClick={onDecrement}>-</button>
+      <Example3 number={number} onIncrement={onIncrement} />
     </div>
-  );
+  )
 }
-
-export default Example2;
