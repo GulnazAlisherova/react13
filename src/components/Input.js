@@ -10,17 +10,17 @@ function Input() {
     setItems([
       ...items,
       {
-        name: item, 
+        name: item,
       },
     ]);
     setItem("");
   }
-  function Delete() {
-    setItems(!item.name);
-  }
-
+ 
+  const deleteItem = (index) => () =>
+    setItems((items) => items.filter((_, i) => i !== index));
   return (
-    <div>
+    <>
+    
       <form onSubmit={Add}>
         <input
           name="item"
@@ -30,15 +30,19 @@ function Input() {
         />
       </form>
       <button onClick={Add}>Add</button>
-      <ul>
-        {items.map((item) => (
-          <li>
-            {item.name}
-            <button onClick={Delete}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <ol>
+     
+        {items.map((it, index) => {
+        return (
+          <div key={it.id}>
+            {it.name} <button onClick={deleteItem(index)}>Remove</button>
+          </div>
+        );
+      })}
+        
+ 
+      </ol>
+    </>
   );
 }
 
